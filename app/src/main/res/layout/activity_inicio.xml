@@ -99,7 +99,6 @@
                     android:text="Iniciar Sesión"
                     android:textColor="#FFFFFF"
                     android:backgroundTint="@color/azul_Iniciar"
-                    android:cornerRadius="26dp"
                     android:layout_marginBottom="20dp"/>
 
                 <!-- Texto "O iniciar con" -->

@@ -53,10 +53,7 @@
                 android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:backgroundTint="#03A9F4"
-                android:cornerRadius="30dp"
-                android:iconTint="#FFFFFF"
-                android:iconGravity="textStart"
-                android:iconPadding="12dp"/>
+                android:iconTint="#FFFFFF" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -103,8 +103,7 @@
                     android:layout_height="56dp"
                     android:text="Añadir Proyecto"
                     android:textColor="#FFFFFF"
-                    android:backgroundTint="#03A9F4"
-                    android:cornerRadius="28dp"/>
+                    android:backgroundTint="#03A9F4" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </LinearLayout>
