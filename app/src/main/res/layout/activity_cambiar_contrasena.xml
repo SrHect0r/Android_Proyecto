@@ -1,29 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F2F2F2"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:background="#F2F2F2">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:gravity="center"
-        android:padding="24dp">
+        android:padding="0dp">
 
-        <!-- Contenedor principal -->
+        <!-- CardView que ocupa toda la pantalla -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="0dp"
             android:radius="24dp"
             android:elevation="8dp"
             app:cardBackgroundColor="@android:color/white">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:padding="24dp">
 
@@ -42,9 +43,9 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="Contraseña actual"
                     app:endIconMode="password_toggle"
                     app:boxStrokeColor="#03A9F4"
-                    android:hint="Contraseña actual"
                     android:layout_marginBottom="16dp">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -58,9 +59,9 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="Nueva contraseña"
                     app:endIconMode="password_toggle"
                     app:boxStrokeColor="#03A9F4"
-                    android:hint="Nueva contraseña"
                     android:layout_marginBottom="16dp">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -74,9 +75,9 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="Confirmar nueva contraseña"
                     app:endIconMode="password_toggle"
                     app:boxStrokeColor="#03A9F4"
-                    android:hint="Confirmar nueva contraseña"
                     android:layout_marginBottom="24dp">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -90,13 +91,12 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/ConfirmarCambio"
                     android:layout_width="match_parent"
-                    android:layout_height="52dp"
+                    android:layout_height="56dp"
                     android:text="Confirmar Cambio"
                     android:textColor="#FFFFFF"
                     android:textSize="16sp"
-                    android:fontFamily="sans-serif-medium"
                     android:backgroundTint="#03A9F4"
-                    app:cornerRadius="26dp"
+                    android:cornerRadius="28dp"
                     android:layout_marginBottom="16dp"/>
 
                 <!-- Texto informativo -->
