@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="#F2F2F2">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="0dp">
+
+        <!-- CardView principal -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="0dp"
+            android:radius="24dp"
+            android:elevation="8dp"
+            app:cardBackgroundColor="@android:color/white">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="24dp"
+                android:gravity="center_vertical|center_horizontal">
+
+                <!-- Título -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Menú Principal"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:textSize="22sp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="32dp"/>
+
+                <!-- Botón: Agregar Proyecto -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnAgregarProyecto"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:text="Agregar Proyecto"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:backgroundTint="#03A9F4"
+                    app:cornerRadius="26dp"
+                    android:layout_marginBottom="16dp"/>
+
+                <!-- Botón: Eliminar Proyecto -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnEliminarProyecto"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:text="Eliminar Proyecto"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:backgroundTint="#03A9F4"
+                    app:cornerRadius="26dp"
+                    android:layout_marginBottom="16dp"/>
+
+                <!-- Botón: Ver Proyectos -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnVerProyectos"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:text="Ver Proyectos"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:backgroundTint="#03A9F4"
+                    app:cornerRadius="26dp"
+                    android:layout_marginBottom="16dp"/>
+
+                <!-- Botón: Cambiar Contraseña -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnCambiarContrasena"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:text="Cambiar Contraseña"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:backgroundTint="#03A9F4"
+                    app:cornerRadius="26dp"
+                    android:layout_marginBottom="16dp"/>
+
+                <!-- Botón: Cerrar Sesión -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnCerrarSesion"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:text="Cerrar Sesión"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:backgroundTint="#E53935"
+                    app:cornerRadius="26dp"
+                    android:layout_marginBottom="16dp"/>
+
+                <!-- Texto de pie -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Selecciona una opción para continuar."
+                    android:textColor="#9E9E9E"
+                    android:textSize="12sp"
+                    android:gravity="center"
+                    android:layout_marginTop="8dp"/>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</ScrollView>

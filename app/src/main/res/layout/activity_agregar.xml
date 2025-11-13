@@ -7,14 +7,14 @@
     android:fillViewport="true"
     android:background="#F2F2F2">
 
-    <!-- Contenedor principal que ocupa toda la pantalla -->
+    <!-- Contenedor principal -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="0dp">
 
-        <!-- CardView que ocupa todo el espacio disponible -->
+        <!-- Card principal -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -25,85 +25,137 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="24dp">
+                android:padding="24dp"
+                android:gravity="center_horizontal">
 
                 <!-- Título -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Añadir Proyecto"
+                    android:text="Crear Nuevo Proyecto"
                     android:textColor="#000000"
                     android:textStyle="bold"
                     android:textSize="22sp"
                     android:layout_gravity="center"
-                    android:layout_marginBottom="20dp"/>
+                    android:layout_marginBottom="24dp"/>
 
-                <!-- Campos de texto -->
+                <!-- Nombre del proyecto -->
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:boxBackgroundMode="outline"
-                    android:hint="Campo 1"
+                    app:boxStrokeColor="#03A9F4"
+                    android:hint="Nombre del proyecto"
                     android:layout_marginBottom="12dp">
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtNombreProyecto"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapWords"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <!-- Descripción -->
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:boxBackgroundMode="outline"
-                    android:hint="Campo 2"
+                    app:boxStrokeColor="#03A9F4"
+                    android:hint="Descripción"
                     android:layout_marginBottom="12dp">
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtDescripcion"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:inputType="textMultiLine"
+                        android:minLines="3"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <!-- Fecha de inicio -->
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:boxBackgroundMode="outline"
-                    android:hint="Campo 3"
+                    app:boxStrokeColor="#03A9F4"
+                    android:hint="Fecha de inicio"
                     android:layout_marginBottom="12dp">
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtFechaInicio"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:inputType="date"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <!-- Fecha límite -->
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:boxBackgroundMode="outline"
-                    android:hint="Campo 4"
+                    app:boxStrokeColor="#03A9F4"
+                    android:hint="Fecha límite"
                     android:layout_marginBottom="12dp">
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtFechaLimite"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:inputType="date"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <!-- Selector de prioridad -->
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:boxBackgroundMode="outline"
-                    android:hint="Campo 5"
+                    app:boxStrokeColor="#03A9F4"
+                    android:hint="Prioridad"
+                    android:layout_marginBottom="12dp">
+                    <AutoCompleteTextView
+                        android:id="@+id/txtPrioridad"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none"
+                        android:focusable="false"
+                        android:hint="Seleccionar prioridad"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Selector de estado inicial -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:boxBackgroundMode="outline"
+                    app:boxStrokeColor="#03A9F4"
+                    android:hint="Estado inicial"
                     android:layout_marginBottom="24dp">
-                    <com.google.android.material.textfield.TextInputEditText
+                    <AutoCompleteTextView
+                        android:id="@+id/txtEstado"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:inputType="none"
+                        android:focusable="false"
+                        android:hint="Seleccionar estado"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <!-- Botón -->
+                <!-- Botón Crear Proyecto -->
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnAddProject"
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
-                    android:text="Añadir Proyecto"
+                    android:text="Crear Proyecto"
                     android:textColor="#FFFFFF"
-                    android:backgroundTint="#03A9F4" />
+                    android:backgroundTint="#03A9F4"
+                    app:cornerRadius="26dp"
+                    android:layout_marginBottom="12dp"/>
+
+                <!-- Botón Cancelar -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnCancelar"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:text="Cancelar"
+                    android:textColor="#03A9F4"
+                    android:backgroundTint="#E0F7FA"
+                    app:cornerRadius="26dp"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </LinearLayout>
