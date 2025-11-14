@@ -12,10 +12,10 @@ class ProyectoAdapter(
                      ) : RecyclerView.Adapter<ProyectoAdapter.ProyectoViewHolder>() {
 
     inner class ProyectoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val titulo = view.findViewById<TextView>(R.id.txtTituloProyecto)
-        val descripcion = view.findViewById<TextView>(R.id.txtDescripcionProyecto)
-        val estado = view.findViewById<TextView>(R.id.txtEstado)
-        val fecha = view.findViewById<TextView>(R.id.txtFecha)
+        val titulo = view.findViewById<TextView>(R.id.tvNombreProyecto)
+        val descripcion = view.findViewById<TextView>(R.id.tvDescripcionProyecto)
+        val estado = view.findViewById<TextView>(R.id.tvEstadoProyecto)
+        val fecha = view.findViewById<TextView>(R.id.tvFechaProyecto)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProyectoViewHolder {

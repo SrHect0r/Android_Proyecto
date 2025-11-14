@@ -37,6 +37,9 @@
         <activity android:name=".VerProyectosActivity" />
         <activity android:name=".DetalleProyectoActivity" />
         <activity android:name=".EliminarProyectoActivity" />
+        <activity android:name=".LoginActivity" />
+
+
 
 
     </application>

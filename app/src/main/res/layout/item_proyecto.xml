@@ -18,7 +18,7 @@
         android:padding="16dp">
 
         <TextView
-            android:id="@+id/txtTituloProyecto"
+            android:id="@+id/tvNombreProyecto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nombre del Proyecto"
@@ -27,7 +27,7 @@
             android:textColor="#000000"/>
 
         <TextView
-            android:id="@+id/txtDescripcionProyecto"
+            android:id="@+id/tvDescripcionProyecto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Descripción breve del proyecto..."
@@ -43,7 +43,7 @@
             android:layout_marginTop="8dp">
 
             <TextView
-                android:id="@+id/txtEstado"
+                android:id="@+id/tvEstadoProyecto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Estado: En progreso"
@@ -51,12 +51,22 @@
                 android:textStyle="bold"/>
 
             <TextView
-                android:id="@+id/txtFecha"
+                android:id="@+id/tvFechaProyecto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="12/11/2025"
                 android:textColor="#777777"
-                android:textSize="12sp"/>
+                android:textSize="12sp"
+                android:layout_marginStart="16dp"/>
         </LinearLayout>
+
+        <Button
+            android:id="@+id/btnEliminar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Eliminar"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="#F44336"
+            android:textColor="#FFFFFF"/>
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

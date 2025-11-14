@@ -13,7 +13,6 @@
         android:orientation="vertical"
         android:padding="0dp">
 
-        <!-- CardView que ocupa toda la pantalla -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -26,7 +25,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:padding="24dp">
+                android:padding="24dp"
+                android:gravity="center_vertical|center_horizontal">
 
                 <!-- Título -->
                 <TextView
@@ -38,6 +38,21 @@
                     android:textSize="22sp"
                     android:layout_gravity="center"
                     android:layout_marginBottom="24dp"/>
+
+                <!-- Email del usuario -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Email o Usuario"
+                    app:boxStrokeColor="#03A9F4"
+                    android:layout_marginBottom="16dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/EmailUsuario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textEmailAddress"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <!-- Contraseña actual -->
                 <com.google.android.material.textfield.TextInputLayout

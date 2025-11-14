@@ -13,7 +13,7 @@ class AgregarProyectoActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_agregar) // Tu XML
+        setContentView(R.layout.activity_agregar)
 
         // Referencias a los campos del formulario
         val txtNombre = findViewById<TextInputEditText>(R.id.txtNombreProyecto)
@@ -30,15 +30,21 @@ class AgregarProyectoActivity : AppCompatActivity() {
         val prioridades = listOf("Alta", "Media", "Baja")
         val adapterPrioridad = ArrayAdapter(this, android.R.layout.simple_list_item_1, prioridades)
         txtPrioridad.setAdapter(adapterPrioridad)
+        txtPrioridad.keyListener = null // Desactiva edición manual
+        txtPrioridad.setOnClickListener { txtPrioridad.showDropDown() }
 
         val estados = listOf("Pendiente", "En progreso", "Completado")
         val adapterEstado = ArrayAdapter(this, android.R.layout.simple_list_item_1, estados)
         txtEstado.setAdapter(adapterEstado)
+        txtEstado.keyListener = null // Desactiva edición manual
+        txtEstado.setOnClickListener { txtEstado.showDropDown() }
+
+        // Obtener usuario logueado
+        val prefs = getSharedPreferences("mis_prefs", MODE_PRIVATE)
+        val usuarioActual = prefs.getString("email", "") ?: ""
 
         // Acción del botón Cancelar
-        btnCancelar.setOnClickListener {
-            finish() // Cierra la Activity
-        }
+        btnCancelar.setOnClickListener { finish() }
 
         // Acción del botón Agregar
         btnAgregar.setOnClickListener {
@@ -54,9 +60,9 @@ class AgregarProyectoActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // Crear un proyecto
+            // Crear proyecto
             val nuevoProyecto = Proyecto(
-                id = (0..1000).random(), // ID temporal
+                id = (0..1000).random(),
                 titulo = nombre,
                 descripcion = descripcion,
                 estado = estado,
@@ -64,9 +70,13 @@ class AgregarProyectoActivity : AppCompatActivity() {
                 prioridad = prioridad
                                         )
 
-            // Pasar el proyecto a VerProyectosActivity
+            // Guardar proyecto para este usuario
+            guardarProyecto(this, usuarioActual, nuevoProyecto)
+
+            Toast.makeText(this, "Proyecto agregado", Toast.LENGTH_SHORT).show()
+
+            // Ir a VerProyectosActivity
             val intent = Intent(this, VerProyectosActivity::class.java)
-            intent.putExtra("proyectoNuevo", nuevoProyecto)
             startActivity(intent)
             finish()
         }

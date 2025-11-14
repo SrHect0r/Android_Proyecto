@@ -40,7 +40,7 @@ class OpcionesActivity : AppCompatActivity() {
         }
 
         btnCerrar.setOnClickListener {
-            val intent = Intent(this, CrearCuentaActivity::class.java)
+            val intent = Intent(this, StartActivity::class.java)
             // Limpia el historial para que no pueda volver atrás
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)

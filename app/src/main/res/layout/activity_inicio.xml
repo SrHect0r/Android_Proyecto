@@ -84,12 +84,14 @@
 
                 <!-- Olvidaste contraseña -->
                 <TextView
+                    android:id="@+id/tvOlvidoContra"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="¿Has olvidado la contraseña?"
                     android:textColor="@color/blue"
                     android:layout_gravity="end"
                     android:layout_marginBottom="24dp"/>
+
 
                 <!-- Botón Iniciar Sesión -->
                 <com.google.android.material.button.MaterialButton
@@ -141,6 +143,7 @@
 
                 <!-- Registro -->
                 <TextView
+                    android:id="@+id/tvRegistro"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="¿No tienes cuenta? Regístrate"

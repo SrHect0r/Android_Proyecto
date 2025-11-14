@@ -9,24 +9,26 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class VerProyectosActivity : AppCompatActivity() {
 
+    private lateinit var listaDeProyectos: MutableList<Proyecto>
+    private lateinit var adapter: ProyectoAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_ver_proyectos) // Tu XML
+        setContentView(R.layout.activity_ver_proyectos)
 
         // RecyclerView
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerProyectos)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        // Lista de proyectos de prueba
-        val listaDeProyectos = listOf(
-            Proyecto(1, "Proyecto A", "Descripción del proyecto A", "En progreso", "12/11/2025", "Alta"),
-            Proyecto(2, "Proyecto B", "Descripción del proyecto B", "Pendiente", "13/11/2025", "Media"),
-            Proyecto(3, "Proyecto C", "Descripción del proyecto C", "Completado", "14/11/2025", "Baja")
-                                     )
+        // Obtener usuario logueado
+        val prefs = getSharedPreferences("mis_prefs", MODE_PRIVATE)
+        val usuarioActual = prefs.getString("email", "") ?: ""
 
+        // Cargar proyectos del usuario
+        listaDeProyectos = obtenerProyectos(this, usuarioActual)
 
         // Adapter
-        val adapter = ProyectoAdapter(listaDeProyectos) { proyecto ->
+        adapter = ProyectoAdapter(listaDeProyectos) { proyecto ->
             // Acción al hacer click en un proyecto
             val intent = Intent(this, DetalleProyectoActivity::class.java)
             intent.putExtra("proyectoId", proyecto.id)
@@ -41,5 +43,15 @@ class VerProyectosActivity : AppCompatActivity() {
             val intent = Intent(this, AgregarProyectoActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // Actualizar la lista al volver de AgregarProyectoActivity
+        val prefs = getSharedPreferences("mis_prefs", MODE_PRIVATE)
+        val usuarioActual = prefs.getString("email", "") ?: ""
+        listaDeProyectos.clear()
+        listaDeProyectos.addAll(obtenerProyectos(this, usuarioActual))
+        adapter.notifyDataSetChanged()
     }
 }
