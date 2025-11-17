@@ -9,8 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 class EliminarProyectoActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var proyectos: MutableList<Proyecto>
-    private lateinit var adapter: EliminarProyectosAdapter
+    private lateinit var adapter: EliminarProyectoAdapter
     private lateinit var usuarioActual: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,17 +20,16 @@ class EliminarProyectoActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         val prefs = getSharedPreferences("mis_prefs", MODE_PRIVATE)
-        usuarioActual = prefs.getString("email", "") ?: ""
+        usuarioActual = prefs.getString("usuario_actual", "") ?: ""
 
-        // Cargar solo proyectos del usuario actual
-        proyectos = obtenerProyectos(this, usuarioActual)
-
-        adapter = EliminarProyectosAdapter(this, proyectos) { proyecto ->
-            // Eliminar proyecto del almacenamiento
+        // Inicializar adapter con la lista de proyectos del usuario actual
+        val proyectos = obtenerProyectos(this, usuarioActual).toMutableList()
+        adapter = EliminarProyectoAdapter(this, proyectos) { proyecto ->
+            // Eliminar del almacenamiento
             eliminarProyecto(this, usuarioActual, proyecto)
-            // Eliminar proyecto de la lista y actualizar RecyclerView
-            proyectos.remove(proyecto)
-            adapter.notifyDataSetChanged()
+            // Actualizar RecyclerView con los proyectos actuales
+            val nuevaLista = obtenerProyectos(this, usuarioActual).toMutableList()
+            adapter.actualizarLista(nuevaLista)
             Toast.makeText(this, "Proyecto '${proyecto.titulo}' eliminado", Toast.LENGTH_SHORT).show()
         }
 

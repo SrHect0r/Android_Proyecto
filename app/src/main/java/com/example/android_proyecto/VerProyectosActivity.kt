@@ -19,10 +19,11 @@ class VerProyectosActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.recyclerProyectos)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        // Inicializamos el adaptador con lista vacía
+        // Inicializar adaptador con lista vacía
         adapter = ProyectoAdapter(mutableListOf()) { proyecto ->
+            // Pasamos solo el ID del proyecto al detalle
             val intent = Intent(this, DetalleProyectoActivity::class.java)
-            intent.putExtra("proyectoSeleccionado", proyecto)
+            intent.putExtra("proyectoId", proyecto.id)
             startActivity(intent)
         }
         recyclerView.adapter = adapter
@@ -39,13 +40,13 @@ class VerProyectosActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        // Refrescar proyectos cada vez que volvemos a la activity
+        // Refrescar la lista cada vez que volvemos a la activity
         actualizarListaProyectos()
     }
 
     private fun actualizarListaProyectos() {
         val prefs = getSharedPreferences("mis_prefs", MODE_PRIVATE)
-        val usuarioActual = prefs.getString("email", "") ?: ""
+        val usuarioActual = prefs.getString("usuario_actual", "") ?: ""
         val listaDeProyectos = obtenerProyectos(this, usuarioActual)
         adapter.actualizarLista(listaDeProyectos)
     }

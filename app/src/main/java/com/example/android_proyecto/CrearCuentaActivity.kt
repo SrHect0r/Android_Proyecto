@@ -6,8 +6,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 
 class CrearCuentaActivity : AppCompatActivity() {
 
@@ -21,9 +19,6 @@ class CrearCuentaActivity : AppCompatActivity() {
         val fechaNacimientoInput = findViewById<EditText>(R.id.FechaNacimiento)
         val botonRegistrar = findViewById<Button>(R.id.Registrar)
 
-        val prefs = getSharedPreferences("mis_prefs", MODE_PRIVATE)
-        val gson = Gson()
-
         botonRegistrar.setOnClickListener {
             val nombre = nombreInput.text.toString().trim()
             val email = emailInput.text.toString().trim()
@@ -31,18 +26,18 @@ class CrearCuentaActivity : AppCompatActivity() {
             val fechaNacimiento = fechaNacimientoInput.text.toString().trim()
 
             if (nombre.isEmpty() || email.isEmpty() || contrasena.isEmpty() || fechaNacimiento.isEmpty()) {
-                Toast.makeText(this, "Por favor rellene los campos obligatorios", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Por favor rellena todos los campos", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             val nuevoUsuario = Usuario(nombre, email, contrasena, fechaNacimiento)
 
-            // Usar funciones de UsuarioManager.kt
+            // Guardar el usuario usando la función centralizada
             guardarUsuario(this, nuevoUsuario)
 
             Toast.makeText(this, "Cuenta creada para $nombre", Toast.LENGTH_SHORT).show()
 
-            // Ir a LoginActivity
+            // Ir al login
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }

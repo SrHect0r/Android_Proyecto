@@ -33,10 +33,9 @@ class CambiarContrasena : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            // Obtener la lista de usuarios
             val prefs = getSharedPreferences("mis_prefs", Context.MODE_PRIVATE)
             val gson = Gson()
-
-            // Leer lista de usuarios
             val usuariosJson = prefs.getString("usuarios", null)
             val tipo = object : TypeToken<MutableList<Usuario>>() {}.type
             val listaUsuarios: MutableList<Usuario> = if (usuariosJson != null) {
@@ -45,14 +44,13 @@ class CambiarContrasena : AppCompatActivity() {
                 mutableListOf()
             }
 
-            // Buscar el usuario
+            // Buscar el usuario y verificar la contraseña actual
             val usuario = listaUsuarios.find { it.email == email }
             if (usuario == null) {
                 Toast.makeText(this, "El usuario no existe", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            // Comprobar contraseña actual
             if (usuario.password != actual) {
                 Toast.makeText(this, "La contraseña actual no es correcta", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -70,7 +68,7 @@ class CambiarContrasena : AppCompatActivity() {
 
             Toast.makeText(this, "Contraseña cambiada con éxito", Toast.LENGTH_SHORT).show()
 
-            // Redirigir al LoginActivity
+            // Redirigir al login
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }

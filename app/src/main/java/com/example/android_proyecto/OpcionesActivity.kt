@@ -9,7 +9,7 @@ class OpcionesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_opciones) // Asegúrate de que el XML se llame así
+        setContentView(R.layout.activity_opciones)
 
         // Referencias a los botones
         val btnAgregar = findViewById<MaterialButton>(R.id.btnAgregarProyecto)
@@ -20,28 +20,24 @@ class OpcionesActivity : AppCompatActivity() {
 
         // Acciones al hacer clic
         btnAgregar.setOnClickListener {
-            val intent = Intent(this, AgregarProyectoActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, AgregarProyectoActivity::class.java))
         }
 
         btnEliminar.setOnClickListener {
-            val intent = Intent(this, EliminarProyectoActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, EliminarProyectoActivity::class.java))
         }
 
         btnVer.setOnClickListener {
-            val intent = Intent(this, VerProyectosActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, VerProyectosActivity::class.java))
         }
 
         btnCambiar.setOnClickListener {
-            val intent = Intent(this, CambiarContrasena::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, CambiarContrasena::class.java))
         }
 
         btnCerrar.setOnClickListener {
             val intent = Intent(this, StartActivity::class.java)
-            // Limpia el historial para que no pueda volver atrás
+            // Limpiar historial de Activities para que no pueda volver atrás
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
             finish()

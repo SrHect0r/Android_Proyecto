@@ -26,11 +26,13 @@ class AgregarProyectoActivity : AppCompatActivity() {
         val btnCancelar = findViewById<MaterialButton>(R.id.btnCancelar)
 
         // Configurar AutoCompleteTextViews
-        txtPrioridad.setAdapter(ArrayAdapter(this, android.R.layout.simple_list_item_1, listOf("Alta","Media","Baja")))
+        val prioridades = listOf("Alta", "Media", "Baja")
+        txtPrioridad.setAdapter(ArrayAdapter(this, android.R.layout.simple_list_item_1, prioridades))
         txtPrioridad.keyListener = null
         txtPrioridad.setOnClickListener { txtPrioridad.showDropDown() }
 
-        txtEstado.setAdapter(ArrayAdapter(this, android.R.layout.simple_list_item_1, listOf("Pendiente","En progreso","Completado")))
+        val estados = listOf("Pendiente", "En progreso", "Completado")
+        txtEstado.setAdapter(ArrayAdapter(this, android.R.layout.simple_list_item_1, estados))
         txtEstado.keyListener = null
         txtEstado.setOnClickListener { txtEstado.showDropDown() }
 
@@ -46,14 +48,18 @@ class AgregarProyectoActivity : AppCompatActivity() {
             val prioridad = txtPrioridad.text.toString().trim()
             val estado = txtEstado.text.toString().trim()
 
-            if(nombre.isEmpty() || descripcion.isEmpty() || fechaInicio.isEmpty() || fechaLimite.isEmpty() || prioridad.isEmpty() || estado.isEmpty()) {
+            if (nombre.isEmpty() || descripcion.isEmpty() || fechaInicio.isEmpty() ||
+                fechaLimite.isEmpty() || prioridad.isEmpty() || estado.isEmpty()
+            ) {
                 Toast.makeText(this, "Rellena todos los campos", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
+            // Obtener usuario logueado
             val prefs = getSharedPreferences("mis_prefs", MODE_PRIVATE)
-            val usuarioActual = prefs.getString("email","") ?: ""
+            val usuarioActual = prefs.getString("usuario_actual", "") ?: ""
 
+            // Crear proyecto asociado al usuario actual
             val nuevoProyecto = Proyecto(
                 id = (0..1000).random(),
                 titulo = nombre,
@@ -64,11 +70,14 @@ class AgregarProyectoActivity : AppCompatActivity() {
                 usuarioEmail = usuarioActual
                                         )
 
+            // Guardar proyecto solo para este usuario
             guardarProyecto(this, usuarioActual, nuevoProyecto)
 
             Toast.makeText(this, "Proyecto agregado", Toast.LENGTH_SHORT).show()
 
-            startActivity(Intent(this, VerProyectosActivity::class.java))
+            // Ir a VerProyectosActivity mostrando solo los proyectos del usuario
+            val intent = Intent(this, VerProyectosActivity::class.java)
+            startActivity(intent)
             finish()
         }
     }

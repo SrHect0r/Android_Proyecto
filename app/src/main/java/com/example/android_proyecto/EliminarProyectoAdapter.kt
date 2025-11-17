@@ -8,11 +8,11 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class EliminarProyectosAdapter(
+class EliminarProyectoAdapter(
     private val context: Context,
-    private val listaProyectos: MutableList<Proyecto>,
+    private val proyectos: MutableList<Proyecto>,
     private val onEliminarClick: (Proyecto) -> Unit
-                              ) : RecyclerView.Adapter<EliminarProyectosAdapter.ProyectoViewHolder>() {
+                             ) : RecyclerView.Adapter<EliminarProyectoAdapter.ProyectoViewHolder>() {
 
     inner class ProyectoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val nombreProyecto: TextView = view.findViewById(R.id.tvNombreProyecto)
@@ -28,19 +28,22 @@ class EliminarProyectosAdapter(
     }
 
     override fun onBindViewHolder(holder: ProyectoViewHolder, position: Int) {
-        val proyecto = listaProyectos[position]
+        val proyecto = proyectos[position]
         holder.nombreProyecto.text = proyecto.titulo
         holder.descripcionProyecto.text = proyecto.descripcion
         holder.estadoProyecto.text = "Estado: ${proyecto.estado}"
         holder.fechaProyecto.text = proyecto.fecha
 
         holder.btnEliminar.setOnClickListener {
-            listaProyectos.removeAt(position)
-            notifyItemRemoved(position)
-            notifyItemRangeChanged(position, listaProyectos.size)
-            onEliminarClick(proyecto) // Callback al Activity
+            onEliminarClick(proyecto)
         }
     }
 
-    override fun getItemCount(): Int = listaProyectos.size
+    override fun getItemCount(): Int = proyectos.size
+
+    fun actualizarLista(nuevaLista: MutableList<Proyecto>) {
+        proyectos.clear()
+        proyectos.addAll(nuevaLista)
+        notifyDataSetChanged()
+    }
 }

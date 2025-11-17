@@ -37,9 +37,11 @@ class ProyectoAdapter(
     override fun getItemCount(): Int = proyectos.size
 
     // Método para actualizar la lista de proyectos y refrescar el RecyclerView
-    fun actualizarLista(nuevaLista: List<Proyecto>) {
+    fun actualizarLista(nuevaLista: List<Proyecto>?) {
         proyectos.clear()
-        proyectos.addAll(nuevaLista)
+        if (nuevaLista != null) {
+            proyectos.addAll(nuevaLista)
+        }
         notifyDataSetChanged()
     }
 }

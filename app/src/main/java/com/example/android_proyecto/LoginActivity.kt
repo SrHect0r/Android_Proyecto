@@ -49,9 +49,9 @@ class LoginActivity : AppCompatActivity() {
             if (validarUsuario(this, emailTxt, passTxt) ||
                 (emailTxt == "admin@gmail.com" && passTxt == "1234")) {
 
-                // Guardar usuario actual
+                // Guardar usuario logueado en SharedPreferences
                 val prefs = getSharedPreferences("mis_prefs", MODE_PRIVATE)
-                prefs.edit().putString("usuario_actual", emailTxt).apply()
+                prefs.edit().putString("email", emailTxt).apply() // usar "email" para consistencia
 
                 Toast.makeText(this, "Inicio correcto", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this, OpcionesActivity::class.java))
