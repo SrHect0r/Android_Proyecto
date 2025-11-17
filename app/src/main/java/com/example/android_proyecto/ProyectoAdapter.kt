@@ -7,15 +7,15 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class ProyectoAdapter(
-    private val proyectos: List<Proyecto>,
+    private val proyectos: MutableList<Proyecto>, // mutable para poder actualizar
     private val onClick: (Proyecto) -> Unit
                      ) : RecyclerView.Adapter<ProyectoAdapter.ProyectoViewHolder>() {
 
     inner class ProyectoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val titulo = view.findViewById<TextView>(R.id.tvNombreProyecto)
-        val descripcion = view.findViewById<TextView>(R.id.tvDescripcionProyecto)
-        val estado = view.findViewById<TextView>(R.id.tvEstadoProyecto)
-        val fecha = view.findViewById<TextView>(R.id.tvFechaProyecto)
+        val titulo: TextView = view.findViewById(R.id.tvNombreProyecto)
+        val descripcion: TextView = view.findViewById(R.id.tvDescripcionProyecto)
+        val estado: TextView = view.findViewById(R.id.tvEstadoProyecto)
+        val fecha: TextView = view.findViewById(R.id.tvFechaProyecto)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProyectoViewHolder {
@@ -29,10 +29,17 @@ class ProyectoAdapter(
         holder.titulo.text = proyecto.titulo
         holder.descripcion.text = proyecto.descripcion
         holder.estado.text = "Estado: ${proyecto.estado}"
-        holder.fecha.text = proyecto.fecha
+        holder.fecha.text = "Fecha límite: ${proyecto.fecha}"
 
         holder.itemView.setOnClickListener { onClick(proyecto) }
     }
 
-    override fun getItemCount() = proyectos.size
+    override fun getItemCount(): Int = proyectos.size
+
+    // Método para actualizar la lista de proyectos y refrescar el RecyclerView
+    fun actualizarLista(nuevaLista: List<Proyecto>) {
+        proyectos.clear()
+        proyectos.addAll(nuevaLista)
+        notifyDataSetChanged()
+    }
 }

@@ -1,11 +1,14 @@
 package com.example.android_proyecto
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 class CambiarContrasena : AppCompatActivity() {
 
@@ -19,8 +22,6 @@ class CambiarContrasena : AppCompatActivity() {
         val confirmarNueva = findViewById<EditText>(R.id.ConfirmarContrasena)
         val botonConfirmar = findViewById<Button>(R.id.ConfirmarCambio)
 
-        val prefs = getSharedPreferences("mis_prefs", MODE_PRIVATE)
-
         botonConfirmar.setOnClickListener {
             val email = emailUsuario.text.toString().trim()
             val actual = contrasenaActual.text.toString().trim()
@@ -32,33 +33,46 @@ class CambiarContrasena : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // Leer credenciales guardadas
-            val emailGuardado = prefs.getString("email", "")
-            val passwordGuardado = prefs.getString("password", "")
+            val prefs = getSharedPreferences("mis_prefs", Context.MODE_PRIVATE)
+            val gson = Gson()
 
-            if (email != emailGuardado) {
+            // Leer lista de usuarios
+            val usuariosJson = prefs.getString("usuarios", null)
+            val tipo = object : TypeToken<MutableList<Usuario>>() {}.type
+            val listaUsuarios: MutableList<Usuario> = if (usuariosJson != null) {
+                gson.fromJson(usuariosJson, tipo)
+            } else {
+                mutableListOf()
+            }
+
+            // Buscar el usuario
+            val usuario = listaUsuarios.find { it.email == email }
+            if (usuario == null) {
                 Toast.makeText(this, "El usuario no existe", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            if (actual != passwordGuardado) {
+            // Comprobar contraseña actual
+            if (usuario.password != actual) {
                 Toast.makeText(this, "La contraseña actual no es correcta", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
+            // Verificar que la nueva contraseña coincide con la confirmación
             if (nueva != confirmar) {
                 Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            // Guardar la nueva contraseña
-            prefs.edit().putString("password", nueva).apply()
+            // Cambiar la contraseña y guardar la lista
+            usuario.password = nueva
+            prefs.edit().putString("usuarios", gson.toJson(listaUsuarios)).apply()
+
             Toast.makeText(this, "Contraseña cambiada con éxito", Toast.LENGTH_SHORT).show()
 
-            // ✅ Redirigir al LoginActivity
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-            finish() // Para cerrar esta actividad y no volver con "atrás"
+            // Redirigir al LoginActivity
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
         }
     }
 }

@@ -20,8 +20,6 @@ class LoginActivity : AppCompatActivity() {
         val tvRegistro = findViewById<TextView>(R.id.tvRegistro)
         val tvOlvidoContra = findViewById<TextView>(R.id.tvOlvidoContra)
 
-        val prefs = getSharedPreferences("mis_prefs", MODE_PRIVATE)
-
         // BOTÓN "REGÍSTRATE"
         tvRegistro.setOnClickListener {
             startActivity(Intent(this, CrearCuentaActivity::class.java))
@@ -38,7 +36,7 @@ class LoginActivity : AppCompatActivity() {
             val passTxt = contra.text.toString().trim()
 
             if (emailTxt.isEmpty()) {
-                email.error = "Introduce tu email o número"
+                email.error = "Introduce tu email"
                 return@setOnClickListener
             }
 
@@ -47,17 +45,19 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // Leer credenciales guardadas
-            val emailGuardado = prefs.getString("email", "")
-            val passwordGuardado = prefs.getString("password", "")
-
-            if ((emailTxt == emailGuardado && passTxt == passwordGuardado) ||
+            // Validar usuario en la lista de todos los usuarios
+            if (validarUsuario(this, emailTxt, passTxt) ||
                 (emailTxt == "admin@gmail.com" && passTxt == "1234")) {
+
+                // Guardar usuario actual
+                val prefs = getSharedPreferences("mis_prefs", MODE_PRIVATE)
+                prefs.edit().putString("usuario_actual", emailTxt).apply()
+
                 Toast.makeText(this, "Inicio correcto", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this, OpcionesActivity::class.java))
                 finish()
             } else {
-                Toast.makeText(this, "Login incorrecto", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Email o contraseña incorrectos", Toast.LENGTH_SHORT).show()
             }
         }
     }

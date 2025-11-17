@@ -9,49 +9,44 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class VerProyectosActivity : AppCompatActivity() {
 
-    private lateinit var listaDeProyectos: MutableList<Proyecto>
+    private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ProyectoAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ver_proyectos)
 
-        // RecyclerView
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerProyectos)
+        recyclerView = findViewById(R.id.recyclerProyectos)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        // Obtener usuario logueado
-        val prefs = getSharedPreferences("mis_prefs", MODE_PRIVATE)
-        val usuarioActual = prefs.getString("email", "") ?: ""
-
-        // Cargar proyectos del usuario
-        listaDeProyectos = obtenerProyectos(this, usuarioActual)
-
-        // Adapter
-        adapter = ProyectoAdapter(listaDeProyectos) { proyecto ->
-            // Acción al hacer click en un proyecto
+        // Inicializamos el adaptador con lista vacía
+        adapter = ProyectoAdapter(mutableListOf()) { proyecto ->
             val intent = Intent(this, DetalleProyectoActivity::class.java)
-            intent.putExtra("proyectoId", proyecto.id)
+            intent.putExtra("proyectoSeleccionado", proyecto)
             startActivity(intent)
         }
-
         recyclerView.adapter = adapter
 
-        // Botón flotante para agregar nuevo proyecto
+        // Botón para agregar nuevo proyecto
         val btnNuevoProyecto = findViewById<FloatingActionButton>(R.id.btnNuevoProyecto)
         btnNuevoProyecto.setOnClickListener {
-            val intent = Intent(this, AgregarProyectoActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, AgregarProyectoActivity::class.java))
         }
+
+        // Cargar proyectos del usuario actual
+        actualizarListaProyectos()
     }
 
     override fun onResume() {
         super.onResume()
-        // Actualizar la lista al volver de AgregarProyectoActivity
+        // Refrescar proyectos cada vez que volvemos a la activity
+        actualizarListaProyectos()
+    }
+
+    private fun actualizarListaProyectos() {
         val prefs = getSharedPreferences("mis_prefs", MODE_PRIVATE)
         val usuarioActual = prefs.getString("email", "") ?: ""
-        listaDeProyectos.clear()
-        listaDeProyectos.addAll(obtenerProyectos(this, usuarioActual))
-        adapter.notifyDataSetChanged()
+        val listaDeProyectos = obtenerProyectos(this, usuarioActual)
+        adapter.actualizarLista(listaDeProyectos)
     }
 }
