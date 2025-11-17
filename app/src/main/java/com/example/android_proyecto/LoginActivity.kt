@@ -51,7 +51,7 @@ class LoginActivity : AppCompatActivity() {
 
                 // Guardar usuario logueado en SharedPreferences
                 val prefs = getSharedPreferences("mis_prefs", MODE_PRIVATE)
-                prefs.edit().putString("email", emailTxt).apply() // usar "email" para consistencia
+                prefs.edit().putString("usuario_actual", emailTxt).apply()
 
                 Toast.makeText(this, "Inicio correcto", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this, OpcionesActivity::class.java))

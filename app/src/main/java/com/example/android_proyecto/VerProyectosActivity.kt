@@ -46,8 +46,10 @@ class VerProyectosActivity : AppCompatActivity() {
 
     private fun actualizarListaProyectos() {
         val prefs = getSharedPreferences("mis_prefs", MODE_PRIVATE)
+        // Usar "usuario_actual" coherentemente en toda la app
         val usuarioActual = prefs.getString("usuario_actual", "") ?: ""
-        val listaDeProyectos = obtenerProyectos(this, usuarioActual)
+        val listaDeProyectos = obtenerProyectos(this, usuarioActual) // proyectos filtrados por usuario
         adapter.actualizarLista(listaDeProyectos)
     }
+
 }
