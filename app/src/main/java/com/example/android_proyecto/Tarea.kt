@@ -1,10 +1,11 @@
+// Tarea.kt
 package com.example.android_proyecto
 
-data class Tarea(
-    val nombre: String = "",
-    val descripcion: String = "",
-    val prioridad: String = "",
-    val fechaLimite: String = "",
-    val estado: String = ""
-                )
+import java.io.Serializable
 
+data class Tarea(
+    var nombre: String,
+    var estado: String,
+    var horas: Int,
+    var comentario: String
+                ) : Serializable

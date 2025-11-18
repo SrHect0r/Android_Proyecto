@@ -24,20 +24,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".CambiarContrasena"
-            android:exported="true">
-        </activity>
-        <activity
-            android:name=".CrearCuentaActivity"
-            android:exported="true">
-        </activity>
 
-        <activity android:name=".AgregarProyectoActivity" />
-        <activity android:name=".VerProyectosActivity" />
-        <activity android:name=".DetalleProyectoActivity" />
-        <activity android:name=".EliminarProyectoActivity" />
+        <activity android:name=".ProyectosActivity" />
         <activity android:name=".LoginActivity" />
+        <activity android:name=".DetalleProyectoActivity" />
 
 
 

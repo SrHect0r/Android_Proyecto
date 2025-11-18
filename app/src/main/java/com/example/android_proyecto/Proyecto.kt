@@ -1,14 +1,11 @@
+// Proyecto.kt
 package com.example.android_proyecto
 
-data class Proyecto(
-    val id: Long,
-    val titulo: String = "",
-    val descripcion: String = "",
-    val estado: String = "",
-    val fecha: String = "",
-    val prioridad: String = "",
-    val usuarioEmail: String = "",
-    val tareas: List<Tarea> = emptyList(),
-    val usuariosCompartidos: List<String> = emptyList()
-                   )
+import java.io.Serializable
 
+data class Proyecto(
+    val nombre: String,
+    val descripcion: String,
+    val fechaLimite: String,
+    val tareas: MutableList<Tarea>
+                   ) : Serializable

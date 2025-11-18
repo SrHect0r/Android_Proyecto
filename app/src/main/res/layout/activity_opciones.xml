@@ -13,7 +13,6 @@
         android:orientation="vertical"
         android:padding="0dp">
 
-        <!-- CardView principal -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -29,7 +28,6 @@
                 android:padding="24dp"
                 android:gravity="center_vertical|center_horizontal">
 
-                <!-- Título -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -40,33 +38,6 @@
                     android:layout_gravity="center"
                     android:layout_marginBottom="32dp"/>
 
-                <!-- Botón: Agregar Proyecto -->
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnAgregarProyecto"
-                    android:layout_width="match_parent"
-                    android:layout_height="52dp"
-                    android:text="Agregar Proyecto"
-                    android:textColor="#FFFFFF"
-                    android:textSize="16sp"
-                    android:fontFamily="sans-serif-medium"
-                    android:backgroundTint="#03A9F4"
-                    app:cornerRadius="26dp"
-                    android:layout_marginBottom="16dp"/>
-
-                <!-- Botón: Eliminar Proyecto -->
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnEliminarProyecto"
-                    android:layout_width="match_parent"
-                    android:layout_height="52dp"
-                    android:text="Eliminar Proyecto"
-                    android:textColor="#FFFFFF"
-                    android:textSize="16sp"
-                    android:fontFamily="sans-serif-medium"
-                    android:backgroundTint="#03A9F4"
-                    app:cornerRadius="26dp"
-                    android:layout_marginBottom="16dp"/>
-
-                <!-- Botón: Ver Proyectos -->
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnVerProyectos"
                     android:layout_width="match_parent"
@@ -79,20 +50,6 @@
                     app:cornerRadius="26dp"
                     android:layout_marginBottom="16dp"/>
 
-                <!-- Botón: Cambiar Contraseña -->
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnCambiarContrasena"
-                    android:layout_width="match_parent"
-                    android:layout_height="52dp"
-                    android:text="Cambiar Contraseña"
-                    android:textColor="#FFFFFF"
-                    android:textSize="16sp"
-                    android:fontFamily="sans-serif-medium"
-                    android:backgroundTint="#03A9F4"
-                    app:cornerRadius="26dp"
-                    android:layout_marginBottom="16dp"/>
-
-                <!-- Botón: Cerrar Sesión -->
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnCerrarSesion"
                     android:layout_width="match_parent"
@@ -105,7 +62,6 @@
                     app:cornerRadius="26dp"
                     android:layout_marginBottom="16dp"/>
 
-                <!-- Texto de pie -->
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

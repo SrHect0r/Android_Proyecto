@@ -1,0 +1,31 @@
+{
+  "aleix@gmail.com": [
+    {
+      "nombre": "Proyecto A",
+      "descripcion": "Descripción del proyecto A",
+      "fechaLimite": "2025-12-31",
+      "tareas": [
+        {
+          "nombre": "Tarea 1",
+          "estado": "pendiente",
+          "horas": 0,
+          "comentario": ""
+        },
+        {
+          "nombre": "Tarea 2",
+          "estado": "en progreso",
+          "horas": 2,
+          "comentario": "Se avanzó en la parte inicial"
+        }
+      ]
+    }
+  ],
+  "hector@gmail.com": [
+    {
+      "nombre": "Proyecto B",
+      "descripcion": "Descripción del proyecto B",
+      "fechaLimite": "2026-01-15",
+      "tareas": []
+    }
+  ]
+}

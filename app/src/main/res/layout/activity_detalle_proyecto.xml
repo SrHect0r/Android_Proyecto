@@ -1,108 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
+    android:padding="24dp"
     android:background="#F2F2F2">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/tvTituloProyecto"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:text="Proyecto"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp"/>
 
-        <!-- CardView con información principal del proyecto -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:radius="24dp"
-            android:elevation="8dp"
-            app:cardBackgroundColor="@android:color/white"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="24dp">
-
-                <!-- Título del proyecto -->
-                <TextView
-                    android:id="@+id/txtTituloDetalle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Título del proyecto"
-                    android:textSize="22sp"
-                    android:textStyle="bold"
-                    android:textColor="#000000"
-                    android:layout_marginBottom="16dp"/>
-
-                <!-- Descripción -->
-                <TextView
-                    android:id="@+id/txtDescripcionDetalle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Descripción del proyecto"
-                    android:textSize="16sp"
-                    android:textColor="#424242"
-                    android:layout_marginBottom="16dp"/>
-
-                <!-- Estado -->
-                <TextView
-                    android:id="@+id/txtEstadoDetalle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Estado: En progreso"
-                    android:textSize="16sp"
-                    android:textColor="#03A9F4"
-                    android:layout_marginBottom="8dp"/>
-
-                <!-- Fecha límite -->
-                <TextView
-                    android:id="@+id/txtFechaDetalle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Fecha límite: 31/12/2025"
-                    android:textSize="16sp"
-                    android:textColor="#424242"
-                    android:layout_marginBottom="8dp"/>
-
-                <!-- Prioridad -->
-                <TextView
-                    android:id="@+id/txtPrioridadDetalle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Prioridad: Alta"
-                    android:textSize="16sp"
-                    android:textColor="#FF5722"/>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <!-- Contenedor de tareas dinámicas -->
-        <LinearLayout
-            android:id="@+id/contenedorTareasDetalle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="8dp"
-            android:clipToPadding="false"
-            android:paddingBottom="16dp"
-            android:background="#E0E0E0"
-            android:layout_marginBottom="16dp">
-
-            <TextView
-                android:id="@+id/tituloTareas"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tareas"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:textColor="#000000"
-                android:layout_marginBottom="8dp"/>
-        </LinearLayout>
-
-    </LinearLayout>
-</ScrollView>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvTareas"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

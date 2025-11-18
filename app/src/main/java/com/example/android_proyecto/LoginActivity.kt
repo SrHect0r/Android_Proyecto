@@ -3,33 +3,21 @@ package com.example.android_proyecto
 import android.content.Intent
 import android.os.Bundle
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
-import com.google.android.material.button.MaterialButton
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.button.MaterialButton
+import org.json.JSONArray
 
 class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_inicio)   // Asegúrate de que el XML tiene este nombre
+        setContentView(R.layout.activity_login) // Asegúrate de que tu XML tiene este nombre
 
-        // Referencias
+        // Referencias a los elementos de UI
         val email = findViewById<EditText>(R.id.email)
         val contra = findViewById<EditText>(R.id.contra)
         val btnLogin = findViewById<MaterialButton>(R.id.btnIniciarSesion)
-        val tvRegistro = findViewById<TextView>(R.id.tvRegistro)
-        val tvOlvidoContra = findViewById<TextView>(R.id.tvOlvidoContra)
-
-        // ---- REGISTRARSE ----
-        tvRegistro.setOnClickListener {
-            startActivity(Intent(this, CrearCuentaActivity::class.java))
-        }
-
-        // ---- OLVIDÉ CONTRASEÑA ----
-        tvOlvidoContra.setOnClickListener {
-            startActivity(Intent(this, CambiarContrasena::class.java))
-        }
 
         // ---- LOGIN ----
         btnLogin.setOnClickListener {
@@ -46,23 +34,49 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // Validación con lista de usuarios + admin por defecto
-            val esValido = validarUsuario(this, emailTxt, passTxt)
-            val esAdmin = (emailTxt == "admin@gmail.com" && passTxt == "1234")
+            // Validación de usuario
+            val esValido = validarUsuario(emailTxt, passTxt)
+            val esAdmin = emailTxt == "admin@gmail.com" && passTxt == "1234"
 
             if (esValido || esAdmin) {
-
                 // Guardamos el usuario logueado
                 val prefs = getSharedPreferences("mis_prefs", MODE_PRIVATE)
                 prefs.edit().putString("usuario_actual", emailTxt).apply()
 
                 Toast.makeText(this, "Inicio de sesión correcto", Toast.LENGTH_SHORT).show()
-
                 startActivity(Intent(this, OpcionesActivity::class.java))
                 finish()
             } else {
                 Toast.makeText(this, "Email o contraseña incorrectos", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    // ---- FUNCIONES DE JSON ----
+    private fun leerUsuariosDesdeJSON(): List<Usuario> {
+        return try {
+            val jsonString = assets.open("usuarios.json")
+                .bufferedReader()
+                .use { it.readText() }
+
+            val listaUsuarios = mutableListOf<Usuario>()
+            val jsonArray = JSONArray(jsonString)
+
+            for (i in 0 until jsonArray.length()) {
+                val obj = jsonArray.getJSONObject(i)
+                val email = obj.getString("email")
+                val password = obj.getString("password")
+                listaUsuarios.add(Usuario(email, password))
+            }
+            listaUsuarios
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emptyList()
+        }
+    }
+
+    private fun validarUsuario(email: String, pass: String): Boolean {
+        val usuarios = leerUsuariosDesdeJSON()
+        return usuarios.any { it.email == email && it.password == pass }
     }
 }
