@@ -2,35 +2,36 @@ package com.example.android_proyecto
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.google.android.material.button.MaterialButton
 import androidx.appcompat.app.AppCompatActivity
 
 class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_inicio)
+        setContentView(R.layout.activity_inicio)   // Asegúrate de que el XML tiene este nombre
 
+        // Referencias
         val email = findViewById<EditText>(R.id.email)
         val contra = findViewById<EditText>(R.id.contra)
-        val btnLogin = findViewById<Button>(R.id.btnIniciarSesion)
+        val btnLogin = findViewById<MaterialButton>(R.id.btnIniciarSesion)
         val tvRegistro = findViewById<TextView>(R.id.tvRegistro)
         val tvOlvidoContra = findViewById<TextView>(R.id.tvOlvidoContra)
 
-        // BOTÓN "REGÍSTRATE"
+        // ---- REGISTRARSE ----
         tvRegistro.setOnClickListener {
             startActivity(Intent(this, CrearCuentaActivity::class.java))
         }
 
-        // BOTÓN "OLVIDÉ CONTRASEÑA"
+        // ---- OLVIDÉ CONTRASEÑA ----
         tvOlvidoContra.setOnClickListener {
             startActivity(Intent(this, CambiarContrasena::class.java))
         }
 
-        // BOTÓN LOGIN
+        // ---- LOGIN ----
         btnLogin.setOnClickListener {
             val emailTxt = email.text.toString().trim()
             val passTxt = contra.text.toString().trim()
@@ -45,15 +46,18 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // Validar usuario en la lista de todos los usuarios
-            if (validarUsuario(this, emailTxt, passTxt) ||
-                (emailTxt == "admin@gmail.com" && passTxt == "1234")) {
+            // Validación con lista de usuarios + admin por defecto
+            val esValido = validarUsuario(this, emailTxt, passTxt)
+            val esAdmin = (emailTxt == "admin@gmail.com" && passTxt == "1234")
 
-                // Guardar usuario logueado en SharedPreferences
+            if (esValido || esAdmin) {
+
+                // Guardamos el usuario logueado
                 val prefs = getSharedPreferences("mis_prefs", MODE_PRIVATE)
                 prefs.edit().putString("usuario_actual", emailTxt).apply()
 
-                Toast.makeText(this, "Inicio correcto", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Inicio de sesión correcto", Toast.LENGTH_SHORT).show()
+
                 startActivity(Intent(this, OpcionesActivity::class.java))
                 finish()
             } else {

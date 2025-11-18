@@ -9,15 +9,15 @@ class StartActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_start) // Asegúrate de que el XML se llame así
+        setContentView(R.layout.activity_start)
 
-        // Referencia al botón
-        val btnIniciar = findViewById<MaterialButton>(R.id.btnIniciar)
+        // Referencia al botón Iniciar
+        val btnIniciar: MaterialButton = findViewById(R.id.btnIniciar)
 
-        // Acción al hacer clic
+        // Acción al hacer clic en el botón
         btnIniciar.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish() // Recomendado para que no vuelva atrás a la pantalla de inicio
         }
     }
 }

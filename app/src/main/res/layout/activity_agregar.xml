@@ -2,93 +2,143 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    android:background="#F2F2F2">
+    android:fillViewport="true"
+    android:background="#F2F2F2"
+    android:padding="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <!-- Nombre del proyecto -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nombre del proyecto"
             android:layout_marginBottom="12dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtNombreProyecto"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:hint="Nombre del proyecto"/>
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Descripción -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Descripción"
             android:layout_marginBottom="12dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtDescripcion"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:hint="Descripción"
+                android:inputType="textMultiLine"
+                android:minLines="3"/>
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Fecha inicio y límite -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Fecha inicio"
             android:layout_marginBottom="12dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtFechaInicio"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:hint="Fecha inicio"
+                android:focusable="false"
+                android:clickable="true"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Fecha límite"
             android:layout_marginBottom="12dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtFechaLimite"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:hint="Fecha límite"
+                android:focusable="false"
+                android:clickable="true"/>
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- PRIORIDAD -->
+        <!-- Prioridad y Estado -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Prioridad"
             android:layout_marginBottom="12dp">
 
             <AutoCompleteTextView
                 android:id="@+id/txtPrioridad"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="Prioridad"
                 android:focusable="false"
                 android:clickable="true"/>
-
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- ESTADO -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Estado"
             android:layout_marginBottom="12dp">
 
             <AutoCompleteTextView
                 android:id="@+id/txtEstado"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="Estado"
                 android:focusable="false"
                 android:clickable="true"/>
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Compartir con usuarios -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp">
+
+            <MultiAutoCompleteTextView
+                android:id="@+id/txtCompartirUsuario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Compartir con usuario (email)"
+                android:inputType="textEmailAddress"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Contenedor de tareas dinámicas -->
+        <LinearLayout
+            android:id="@+id/contenedorTareas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="12dp"
+            android:background="#E0E0E0"
+            android:padding="12dp"
+            android:clipToPadding="false">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tareas"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="#000"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAgregarTarea"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Añadir tarea"
+                android:layout_marginTop="8dp"/>
+        </LinearLayout>
+
+        <!-- Botones de acción -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnAddProject"
             android:layout_width="match_parent"

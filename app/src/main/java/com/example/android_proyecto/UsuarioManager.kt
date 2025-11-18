@@ -8,7 +8,7 @@ private const val PREFS_NAME = "mis_prefs"
 private const val KEY_USUARIOS = "usuarios"
 
 // Obtener lista de todos los usuarios guardados
-private fun obtenerListaUsuarios(context: Context): MutableList<Usuario> {
+fun obtenerListaUsuarios(context: Context): MutableList<Usuario> {
     val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
     val usuariosJson = prefs.getString(KEY_USUARIOS, null)
     val tipo = object : TypeToken<MutableList<Usuario>>() {}.type

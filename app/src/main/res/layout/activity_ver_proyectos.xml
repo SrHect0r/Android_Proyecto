@@ -1,73 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
     android:background="#F2F2F2">
 
-    <!-- Título superior -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Mis Proyectos"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:textColor="#000000"
-        android:layout_marginBottom="8dp"/>
-
-    <!-- Barra superior con búsqueda y filtro -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:layout_marginBottom="12dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
+        <!-- Título superior -->
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:boxBackgroundMode="outline"
-            android:hint="Buscar proyecto">
+            android:text="Mis Proyectos"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:layout_marginBottom="8dp"/>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/searchInput"
-                android:layout_width="match_parent"
+        <!-- Barra superior con búsqueda y filtro -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="12dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:imeOptions="actionSearch"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                app:boxBackgroundMode="outline"
+                android:hint="Buscar proyecto">
 
-        <ImageButton
-            android:id="@+id/btnFiltrar"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="8dp"
-            android:backgroundTint="#03A9F4"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Filtrar"
-            android:src="@android:drawable/ic_menu_sort_by_size"
-            android:tint="#FFFFFF"/>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/searchInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionSearch"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageButton
+                android:id="@+id/btnFiltrar"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="8dp"
+                android:backgroundTint="#03A9F4"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Filtrar"
+                android:src="@android:drawable/ic_menu_sort_by_size"
+                android:tint="#FFFFFF"/>
+        </LinearLayout>
+
+        <!-- Lista de proyectos -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerProyectos"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:clipToPadding="false"
+            android:paddingBottom="12dp"/>
+
+        <!-- Texto si no hay proyectos -->
+        <TextView
+            android:id="@+id/tvSinProyectos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="No tienes proyectos aún"
+            android:textColor="#777777"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:visibility="gone"
+            android:layout_marginTop="16dp"/>
+
     </LinearLayout>
-
-    <!-- Lista de proyectos -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerProyectos"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:clipToPadding="false"
-        android:paddingBottom="12dp"/>
 
     <!-- Botón flotante para crear nuevo proyecto -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnNuevoProyecto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:layout_margin="12dp"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
         android:src="@android:drawable/ic_input_add"
         app:backgroundTint="#03A9F4"
         android:contentDescription="Añadir nuevo proyecto"/>
-</LinearLayout>
+</FrameLayout>
