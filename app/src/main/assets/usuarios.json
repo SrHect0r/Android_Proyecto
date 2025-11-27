@@ -1,4 +1,30 @@
 [
-  { "email": "aleix@gmail.com", "password": "aleix" },
-  { "email": "hector@gmail.com", "password": "hector" }
+  {
+    "Id": "20f6127b-defd-4ead-afbc-9a4617ce89f1",
+    "Email": "hector@gmail.com",
+    "Password": "hector",
+    "Nombre": "hector",
+    "NombreConEmail": "hector (hector@gmail.com)"
+  },
+  {
+    "Id": "ad6d7e43-a7b2-45b7-bf74-1b3842657785",
+    "Email": "aleix@gmail.com",
+    "Password": "aleix",
+    "Nombre": "aleix",
+    "NombreConEmail": "aleix (aleix@gmail.com)"
+  },
+  {
+    "Id": "b8cd1b4d-2e4a-4f4d-b75c-e3b14a69fe84",
+    "Email": "david@gmail.com",
+    "Password": "david",
+    "Nombre": "david",
+    "NombreConEmail": "david (david@gmail.com)"
+  },
+  {
+    "Id": "293a8218-176d-4f2e-9f02-8aad67f6732a",
+    "Email": "carlos@gmail.com",
+    "Password": "carlos",
+    "Nombre": "carlos",
+    "NombreConEmail": "carlos (carlos@gmail.com)"
+  }
 ]

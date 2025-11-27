@@ -12,14 +12,13 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login) // Asegúrate de que tu XML tiene este nombre
+        setContentView(R.layout.activity_login)
 
-        // Referencias a los elementos de UI
+        // Referencias a UI
         val email = findViewById<EditText>(R.id.email)
         val contra = findViewById<EditText>(R.id.contra)
         val btnLogin = findViewById<MaterialButton>(R.id.btnIniciarSesion)
 
-        // ---- LOGIN ----
         btnLogin.setOnClickListener {
             val emailTxt = email.text.toString().trim()
             val passTxt = contra.text.toString().trim()
@@ -34,14 +33,25 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // Validación de usuario
-            val esValido = validarUsuario(emailTxt, passTxt)
+            val usuarios = leerUsuariosDesdeJSON()
             val esAdmin = emailTxt == "admin@gmail.com" && passTxt == "1234"
+            val usuarioActual = usuarios.find { it.email == emailTxt && it.password == passTxt }
 
-            if (esValido || esAdmin) {
-                // Guardamos el usuario logueado
+            if (esAdmin || usuarioActual != null) {
+                // Guardamos usuario logueado en SharedPreferences
                 val prefs = getSharedPreferences("mis_prefs", MODE_PRIVATE)
-                prefs.edit().putString("usuario_actual", emailTxt).apply()
+                if (usuarioActual != null) {
+                    prefs.edit()
+                        .putString("usuario_actual_id", usuarioActual.id)
+                        .putString("usuario_actual_email", usuarioActual.email)
+                        .apply()
+                } else {
+                    // admin ficticio con ID "admin"
+                    prefs.edit()
+                        .putString("usuario_actual_id", "admin")
+                        .putString("usuario_actual_email", "admin@gmail.com")
+                        .apply()
+                }
 
                 Toast.makeText(this, "Inicio de sesión correcto", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this, OpcionesActivity::class.java))
@@ -52,31 +62,24 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    // ---- FUNCIONES DE JSON ----
+    // ---- Leer usuarios desde JSON ----
     private fun leerUsuariosDesdeJSON(): List<Usuario> {
         return try {
-            val jsonString = assets.open("usuarios.json")
-                .bufferedReader()
-                .use { it.readText() }
-
+            val jsonString = assets.open("usuarios.json").bufferedReader().use { it.readText() }
             val listaUsuarios = mutableListOf<Usuario>()
             val jsonArray = JSONArray(jsonString)
 
             for (i in 0 until jsonArray.length()) {
                 val obj = jsonArray.getJSONObject(i)
-                val email = obj.getString("email")
-                val password = obj.getString("password")
-                listaUsuarios.add(Usuario(email, password))
+                val id = obj.getString("Id")
+                val email = obj.getString("Email")
+                val password = obj.getString("Password")
+                listaUsuarios.add(Usuario(id, email, password))
             }
             listaUsuarios
         } catch (e: Exception) {
             e.printStackTrace()
             emptyList()
         }
-    }
-
-    private fun validarUsuario(email: String, pass: String): Boolean {
-        val usuarios = leerUsuariosDesdeJSON()
-        return usuarios.any { it.email == email && it.password == pass }
     }
 }

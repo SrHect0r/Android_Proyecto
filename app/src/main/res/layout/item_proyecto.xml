@@ -1,35 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="16dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginBottom="12dp"
     app:cardCornerRadius="16dp"
-    app:cardElevation="6dp"
-    android:padding="16dp">
+    app:cardElevation="8dp"
+    app:strokeColor="#DDDDDD"
+    app:strokeWidth="1dp"
+    android:padding="16dp"
+    android:backgroundTint="@android:color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <!-- Nombre del proyecto -->
         <TextView
             android:id="@+id/tvNombreProyecto"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Nombre Proyecto"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="#000000"/>
+            android:textColor="#212121"/>
 
+        <!-- Descripción -->
         <TextView
             android:id="@+id/tvDescripcionProyecto"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Descripción del proyecto"
             android:textSize="14sp"
-            android:textColor="#666666"
+            android:textColor="#757575"
             android:layout_marginTop="4dp"/>
+
+        <!-- Fechas -->
+        <TextView
+            android:id="@+id/tvFechasProyecto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Inicio: 2025-11-27 | Fin: 2025-12-04"
+            android:textSize="12sp"
+            android:textColor="#03A9F4"
+            android:layout_marginTop="4dp"/>
+
+        <!-- Número de tareas del usuario -->
+        <TextView
+            android:id="@+id/tvNumTareas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="3 tareas asignadas"
+            android:textSize="12sp"
+            android:textColor="#03A9F4"
+            android:layout_marginTop="4dp"
+            android:visibility="gone"/>
+
+        <!-- Botón para ver tareas -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnVerTareas"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Ver tareas"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="#03A9F4"
+            android:textColor="@android:color/white"
+            app:cornerRadius="24dp"/>
+
     </LinearLayout>
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

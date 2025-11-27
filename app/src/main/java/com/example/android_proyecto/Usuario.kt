@@ -1,6 +1,7 @@
 package com.example.android_proyecto
 
 data class Usuario(
+    val id: String,
     val email: String,
-    var password: String,
+    val password: String
                   )

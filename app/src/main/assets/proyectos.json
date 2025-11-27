@@ -1,31 +1,89 @@
-{
-  "aleix@gmail.com": [
-    {
-      "nombre": "Proyecto A",
-      "descripcion": "Descripción del proyecto A",
-      "fechaLimite": "2025-12-31",
-      "tareas": [
-        {
-          "nombre": "Tarea 1",
-          "estado": "pendiente",
-          "horas": 0,
-          "comentario": ""
-        },
-        {
-          "nombre": "Tarea 2",
-          "estado": "en progreso",
-          "horas": 2,
-          "comentario": "Se avanzó en la parte inicial"
-        }
-      ]
-    }
-  ],
-  "hector@gmail.com": [
-    {
-      "nombre": "Proyecto B",
-      "descripcion": "Descripción del proyecto B",
-      "fechaLimite": "2026-01-15",
-      "tareas": []
-    }
-  ]
-}
+[
+  {
+    "Id": "13fa995f-6982-49f5-8c9f-9b83a25adb5d",
+    "Nombre": "Prueba 1",
+    "Descripcion": "prueba 1",
+    "FechaInicio": "2025-11-27T19:28:46.7119039+01:00",
+    "FechaFin": "2025-12-04T19:28:46.7119039+01:00",
+    "UsuariosAsignados": [
+      "20f6127b-defd-4ead-afbc-9a4617ce89f1",
+      "ad6d7e43-a7b2-45b7-bf74-1b3842657785",
+      "b8cd1b4d-2e4a-4f4d-b75c-e3b14a69fe84"
+    ],
+    "Tareas": [
+      {
+        "Id": "9a2069d1-206c-4b32-ac4d-19853a3a5929",
+        "Nombre": "David",
+        "Descripcion": "prueba david",
+        "UsuarioAsignadoId": null,
+        "UsuariosAsignados": [
+          "b8cd1b4d-2e4a-4f4d-b75c-e3b14a69fe84"
+        ],
+        "Estado": "Bloqueado",
+        "Prioridad": "Alta",
+        "FechaCreacion": "2025-11-27T19:27:40.2233624+01:00",
+        "FechaInicio": "2025-11-27T19:27:18.1285369+01:00",
+        "FechaFin": "2025-12-05T19:27:18",
+        "Completada": false
+      },
+      {
+        "Id": "55124e8d-f61b-4b4a-a2e6-fb3b1f46f97b",
+        "Nombre": "Aleix",
+        "Descripcion": "prueba aleix",
+        "UsuarioAsignadoId": null,
+        "UsuariosAsignados": [
+          "ad6d7e43-a7b2-45b7-bf74-1b3842657785"
+        ],
+        "Estado": "En progreso",
+        "Prioridad": "Muy alta",
+        "FechaCreacion": "2025-11-27T19:28:44.8215248+01:00",
+        "FechaInicio": "2025-11-27T19:27:41.8814247+01:00",
+        "FechaFin": "2025-12-03T19:27:41",
+        "Completada": false
+      }
+    ]
+  },
+  {
+    "Id": "4b3b4294-aae6-4536-988a-852f961bd096",
+    "Nombre": "sdasdas",
+    "Descripcion": "dasdas",
+    "FechaInicio": "2025-11-27T19:36:38.7000189+01:00",
+    "FechaFin": "2025-12-04T19:36:38.7000189+01:00",
+    "UsuariosAsignados": [
+      "20f6127b-defd-4ead-afbc-9a4617ce89f1",
+      "293a8218-176d-4f2e-9f02-8aad67f6732a"
+    ],
+    "Tareas": [
+      {
+        "Id": "1ecbb10e-da36-4866-b0f2-beb83b81d4c1",
+        "Nombre": "dasdasdas",
+        "Descripcion": "asdasdasd",
+        "UsuarioAsignadoId": null,
+        "UsuariosAsignados": [
+          "293a8218-176d-4f2e-9f02-8aad67f6732a"
+        ],
+        "Estado": "En progreso",
+        "Prioridad": "Media",
+        "FechaCreacion": "2025-11-27T19:36:31.1509566+01:00",
+        "FechaInicio": "2025-11-27T19:36:26.098449+01:00",
+        "FechaFin": "2025-11-27T19:36:26.0944494+01:00",
+        "Completada": false
+      },
+      {
+        "Id": "ec1f8c4d-c576-4963-8b92-7a5fe48771c8",
+        "Nombre": "dasdas",
+        "Descripcion": "dasdas",
+        "UsuarioAsignadoId": null,
+        "UsuariosAsignados": [
+          "20f6127b-defd-4ead-afbc-9a4617ce89f1"
+        ],
+        "Estado": "Testeando",
+        "Prioridad": "Baja",
+        "FechaCreacion": "2025-11-27T19:36:37.3915755+01:00",
+        "FechaInicio": "2025-11-27T19:36:32.9847859+01:00",
+        "FechaFin": "2025-11-27T19:36:32.9797912+01:00",
+        "Completada": false
+      }
+    ]
+  }
+]
