@@ -9,4 +9,3 @@ data class Tarea(
     var horas: Int,
     var comentario: String
                 ) : Serializable
-sdasdas
